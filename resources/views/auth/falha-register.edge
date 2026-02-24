@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro - ConnectSafe</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card form {
+      display: flex;
+      flex-direction: column;
+      max-width: 350px;
+    }
+
+    input, select {
+      max-width: 350px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    .login-section {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .login-section a {
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: bold;
+    }
+
+    .login-section a:hover{
+      color:rgb(95, 125, 207);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Cadastrar</h2>
+
+    <form method="POST" action="/register">
+      <input type="text" name="full_name" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Senha" required>
+
+      <select name="type" required>
+        <option value="FAMILY">Família</option>
+        <option value="CAREGIVER">Cuidador</option>
+      </select>
+
+      <button type="submit">Criar Conta</button>
+    </form>
+    <div class="login-section">
+      <p>Já possuí conta?</p>
+      <a href="/login">Log-in</a>
+      <p style="color: red" class="erro-register">E-mail já cadastrado!</p>
+    </div>
+  </div>
+
+</body>
+</html>

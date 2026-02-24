@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login - ConnectSafe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      font-family: Arial;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card form {
+      display: flex;
+      flex-direction: column;
+      max-width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      max-width: 350px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    .register-section {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .register-section a {
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: bold;
+    }
+
+    .register-section a:hover{
+      color:rgb(95, 125, 207);
+    }
+
+    .erro-login {
+      color: red
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Login</h2>
+
+    <form method="POST" action="/login">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="register-section">
+      <p>Não possuí conta?</p>
+      <a href="/register">Registre-se</a>
+      <p class="erro-login">Credenciais incorretas, tente novamente</p>
+    </div>
+  </div>
+
+</body>
+</html>
