@@ -34,21 +34,31 @@ export default class RequestsController {
   }
 
   async index({ view, auth }: HttpContext) {
-    let requests = null;
-    if(auth.user?.type === "FAMILY") {
 
-      requests = await Request
-      .query()
-      .preload('caregiver')
-      .where('family_id', auth.user!.id)
-    } else {
+    let requests
+  
+    if (auth.user?.type === "FAMILY") {
+  
       requests = await Request
         .query()
-        .preload('caregiver')
-        .where('caregiver_id', auth.user!.id)
+        .where('family_id', auth.user.id)
+        .preload('caregiver', (query) => {
+          query.preload('user') 
+        })
+  
+    } else {
+  
+      requests = await Request
+        .query()
+        .whereHas('caregiver', (query) => {
+          query.where('user_id', auth.user!.id)
+        })
+        .preload('caregiver', (query) => {
+          query.preload('user')
+        })
+        .preload('user')
     }
-
-
+  
     return view.render('requests/index', { requests })
   }
 }

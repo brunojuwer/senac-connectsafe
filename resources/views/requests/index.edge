@@ -93,7 +93,13 @@
     @each(request in requests)
 
       <div class="card">
-        <p><strong>Cuidador:</strong> {{ request.caregiver.description }}</p>
+        
+        @if(auth.user.type === 'CAREGIVER')
+        
+          <p><strong>Solicitante:</strong> {{request.user.full_name}} </p>
+        @endif
+
+        <p><strong>Cuidador:</strong> {{ request.caregiver.user.full_name }}</p>
         <p>
           <strong>Status:</strong>
           <span class="status {{ request.status.toLowerCase() }}">
