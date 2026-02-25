@@ -11,6 +11,16 @@
 
 <br />
 
+## Prova de coneceito definida
+- Cadastrar usuários tanto membros de famílias como cuidadores.
+- Fazer login na aplicação.
+- Usuário membro da família deve conseguir listar os cuidadores.
+- Usuário membro da família deve conseguir solicitar por um cuidador.
+- Usuário membro da família deve conseguir ver o status das solicitações que fez.
+- Usuário cuidador deve conseguir listar, aceitar e recusar uma solicitação.
+- Usuários devem conseguir fazer logoff da aplicação.
+
+
 ## ConnectSafe
 
 Sistema web para conexão entre Famílias e Cuidadores, desenvolvido com AdonisJS, SQLite e autenticação integrada.
