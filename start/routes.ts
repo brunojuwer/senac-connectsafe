@@ -1,17 +1,5 @@
 import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
-
-router.on('/').render('pages/home')
-
-router.get('/login', [AuthController, 'showLogin'])
-router.post('/login', [AuthController, 'login'])
-
-router.get('/dashboard', async ({ view, auth }) => {
-  await auth.use('web').authenticate()
-  return view.render('dashboard')
-})
-import AuthController from '#controllers/auth_controller'
-import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import CaregiversController from '#controllers/caregivers_controller'
 import RequestsController from '#controllers/requests_controller'
@@ -39,9 +27,3 @@ router.group(() => {
   router.post('/requests/:id/reject', [RequestsController, 'reject']).use(middleware.auth())
 
 }).use(middleware.auth({guards: ['web']}))
-
-// router.group(() => {
-
-//   router.get('/caregivers', 'CaregiversController.index')
-
-// }).middleware('auth')

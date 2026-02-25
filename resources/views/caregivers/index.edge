@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cuidadores - ConnectSafe</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background: #1e293b;
+      padding: 15px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div>
+      {{--  <a href="/dashboard">Dashboard</a>  --}}
+      <a href="/caregivers">Cuidadores</a>
+      <a href="/requests">Solicitações</a>
+    </div>
+
+    <div>
+      {{ auth.user.email }}
+      <form method="POST" action="/logout" style="display:inline;">
+        <button type="submit">Sair</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Lista de Cuidadores</h2>
+
+    @each(caregiver in caregivers)
+
+      <div class="card">
+        <h3>{{ caregiver.description }}</h3>
+        <p><strong>Nome:</strong> {{ caregiver.user.full_name }}</p>
+        <p><strong>Local:</strong> {{ caregiver.location }}</p>
+        <p><strong>Rating:</strong> {{ caregiver.rating }}</p>
+
+        <form method="POST" action="/requests">
+          <input type="hidden" name="caregiver_id" value="{{ caregiver.id }}">
+          <button type="submit">Solicitar Cuidador</button>
+        </form>
+      </div>
+
+    @else
+
+      <div class="card">
+        <p>Nenhum cuidador disponível.</p>
+      </div>
+
+    @endeach
+
+  </div>
+
+</body>
+</html>

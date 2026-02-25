@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f9;
+      padding: 40px;
+    }
+
+    .navbar {
+      background: #1e293b;
+      padding: 15px;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    ConnectSafe - {{ auth.user.email }}
+  </div>
+
+  <div class="card">
+    <h2>Bem-vindo</h2>
+
+    @if(auth.user.type === 'FAMILY')
+      <p>Você está logado como Família</p>
+    @endif
+
+    @if(auth.user.type === 'CAREGIVER')
+      <p>Você está logado como Cuidador</p>
+    @endif
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitações - ConnectSafe</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background: #1e293b;
+      padding: 15px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .status {
+      font-weight: bold;
+    }
+
+    .pending { color: orange; }
+    .accepted { color: green; }
+    .rejected { color: red; }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .accept {
+      background: #16a34a;
+      color: white;
+    }
+
+    .reject {
+      background: #dc2626;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div>
+      {{--  <a href="/dashboard">Dashboard</a>  --}}
+      @if(auth.user.type !== 'CAREGIVER')
+        <a href="/caregivers">Cuidadores</a>
+      @endif
+      <a href="/requests">Solicitações</a>
+    </div>
+
+    <div>
+      {{ auth.user.email }}
+      <form method="POST" action="/logout" style="display:inline;">
+        <button type="submit">Sair</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Solicitações</h2>
+
+    @each(request in requests)
+
+      <div class="card">
+        
+        @if(auth.user.type === 'CAREGIVER')
+        
+          <p><strong>Solicitante:</strong> {{request.user.full_name}} </p>
+        @endif
+
+        <p><strong>Cuidador:</strong> {{ request.caregiver.user.full_name }}</p>
+        <p>
+          <strong>Status:</strong>
+          <span class="status {{ request.status.toLowerCase() }}">
+            {{ request.status }}
+          </span>
+        </p>
+        @if(auth.user.type === 'CAREGIVER' && request.status === 'PENDING')
+
+          <form method="POST" action="/requests/{{ request.id }}/accept" style="display:inline;">
+            <button class="accept">Aceitar</button>
+          </form>
+
+          <form method="POST" action="/requests/{{ request.id }}/reject" style="display:inline;">
+            <button class="reject">Recusar</button>
+          </form>
+
+        @endif
+
+      </div>
+
+    @else
+
+      <div class="card">
+        <p>Nenhuma solicitação encontrada.</p>
+      </div>
+
+    @endeach
+
+  </div>
+
+</body>
+</html>

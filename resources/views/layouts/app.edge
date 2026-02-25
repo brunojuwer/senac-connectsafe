@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ConnectSafe</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  @if(auth.user)
+  <div class="navbar">
+    <div>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/caregivers">Cuidadores</a>
+      <a href="/requests">Solicitações</a>
+    </div>
+    <div>
+      {{ auth.user.email }}
+      <form method="POST" action="/logout" style="display:inline;">
+        <button>Sair</button>
+      </form>
+    </div>
+  </div>
+  @endif
+
+  <div class="container">
+    @!section('content')
+  </div>
+
+</body>
+</html>
