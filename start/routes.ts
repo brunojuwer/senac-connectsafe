@@ -2,8 +2,12 @@ import AuthController from '#controllers/auth_controller'
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import CaregiversController from '#controllers/caregivers_controller'
+import type { HttpContext } from '@adonisjs/core/http'
 import RequestsController from '#controllers/requests_controller'
 
+router.get('/', async ({response}: HttpContext) => {
+  return response.redirect('/login')
+})
 router.get('/login', [AuthController, 'showLogin'])
 router.get('/loginRetry', [AuthController, 'loginRetry'])
 router.post('/login', [AuthController, 'login'])
