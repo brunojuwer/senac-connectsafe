@@ -4,6 +4,7 @@ import { middleware } from './kernel.js'
 import CaregiversController from '#controllers/caregivers_controller'
 import type { HttpContext } from '@adonisjs/core/http'
 import RequestsController from '#controllers/requests_controller'
+import ProfileController from '#controllers/profile_controller'
 
 router.get('/', async ({response}: HttpContext) => {
   return response.redirect('/login')
@@ -29,5 +30,8 @@ router.group(() => {
   router.get('/requests', [RequestsController, 'index'])
   router.post('/requests/:id/accept', [RequestsController, 'accept']).use(middleware.auth())
   router.post('/requests/:id/reject', [RequestsController, 'reject']).use(middleware.auth())
+
+  router.get('/profile/edit', [ProfileController, 'edit'])
+  router.post('/profile/update', [ProfileController, 'update'])
 
 }).use(middleware.auth({guards: ['web']}))

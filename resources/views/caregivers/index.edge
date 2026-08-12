@@ -27,6 +27,86 @@
       margin-right: 15px;
     }
 
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.user-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.user-dropdown {
+  display: none;
+
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+
+  width: 180px;
+
+  background: white;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  padding: 8px;
+
+  z-index: 1000;
+}
+
+.user-dropdown.active {
+  display: block;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  display: block;
+
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  color: #333;
+  text-align: left;
+  text-decoration: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#editar-perfil {
+    max-width: 151px;
+    border: none;
+    background: transparent;
+    color: #333;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13.33px;
+}
+
+#editar-perfil:hover {
+  background: #f3f4f6;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: #f3f4f6;
+}
+
     #cuidadores {
       text-decoration: underline;
     }
@@ -64,19 +144,26 @@
 
   <div class="navbar">
     <div class="logo">
-      <img src="../images/connectsafe.svg" alt="Connectsafe" srcset="">
+      <img src="/images/connectsafe.svg" alt="Connectsafe" srcset="">
     </div>
     <div>
       <a id="cuidadores" href="/caregivers">Cuidadores</a>
       <a href="/requests">Solicitações</a>
     </div>
 
-    <div>
+    <div class="user-menu">
+    <div class="user-button">
       {{ auth.user.email }}
-      <img src="../images/user.svg" alt="Usuário" srcset="">
-      <form method="POST" action="/logout" style="display:inline;">
+      <img src="/images/user.svg" alt="Usuário">
+    </div>
+
+    <div class="user-dropdown">
+      <a id="editar-perfil" href="/profile/edit">Editar</a>
+
+      <form method="POST" action="/logout">
         <button type="submit">Sair</button>
       </form>
+      </div>
     </div>
   </div>
 
@@ -106,5 +193,19 @@
 
   </div>
 
+<script>
+  const userButton = document.querySelector('.user-button');
+  const userDropdown = document.querySelector('.user-dropdown');
+
+  userButton.addEventListener('click', () => {
+    userDropdown.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.user-menu')) {
+      userDropdown.classList.remove('active');
+    }
+  });
+</script>
 </body>
 </html>

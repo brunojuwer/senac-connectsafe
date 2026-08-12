@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Solicitações - ConnectSafe</title>
+  <title>Editar - Usuário</title>
 
   <style>
      body {
@@ -108,10 +108,7 @@
   background: #f3f4f6;
 }
 
-  #solicitacoes {
-      text-decoration: underline;
-  }
-
+  
     .container {
       width: 90%;
       max-width: 900px;
@@ -185,45 +182,45 @@
   </div>
 
   <div class="container">
-    <h2>Solicitações</h2>
+    <h2>Editar Perfil</h2>
 
-    @each(request in requests)
+   <form method="POST" action="/profile/update">
 
-      <div class="card">
-        
-        @if(auth.user.type === 'CAREGIVER')
-        
-          <p><strong>Solicitante:</strong> {{request.user.full_name}} </p>
-        @endif
+      <input
+        type="text"
+        name="full_name"
+        value="{{ user.full_name }}"
+        placeholder="Nome"
+      >
 
-        <p><strong>Cuidador:</strong> {{ request.caregiver.user.full_name }}</p>
-        <p>
-          <strong>Status:</strong>
-          <span class="status {{ request.status.toLowerCase() }}">
-            {{ request.status }}
-          </span>
-        </p>
-        @if(auth.user.type === 'CAREGIVER' && request.status === 'PENDING')
+      <input
+        type="email"
+        name="email"
+        value="{{ user.email }}"
+        placeholder="E-mail"
+      >
 
-          <form method="POST" action="/requests/{{ request.id }}/accept" style="display:inline;">
-            <button class="accept">Aceitar</button>
-          </form>
+      <input
+        type="text"
+        name="phone"
+        value="{{ user.phone }}"
+        placeholder="Telefone"
+      >
 
-          <form method="POST" action="/requests/{{ request.id }}/reject" style="display:inline;">
-            <button class="reject">Recusar</button>
-          </form>
+      @if(user.type === 'CAREGIVER')
 
-        @endif
+        <textarea
+          name="description"
+          placeholder="Descrição"
+        >{{ profile.description }}</textarea>
 
-      </div>
+      @endif
 
-    @else
+      <button type="submit">
+        Salvar alterações
+      </button>
 
-      <div class="card">
-        <p>Nenhuma solicitação encontrada.</p>
-      </div>
-
-    @endeach
+    </form>
 
   </div>
 
