@@ -113,41 +113,72 @@
       width: 90%;
       max-width: 900px;
       margin: 40px auto;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
     }
 
-    .card {
+    form {
+      max-width: 480px;
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .inputs-container {
+      width: 100%;
+      border-radius: 40px;
+      border: none;
       background: #F6FBF9;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
+      padding: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding-left: 2rem;
     }
 
-    .status {
-      font-weight: bold;
+    .div-input {
+      width: 80%
     }
 
-    .pending { color: orange; }
-    .accepted { color: green; }
-    .rejected { color: red; }
+    input {
+      background: #F6FBF9;
+      border: none;
+      border-bottom: dashed rgba(0, 0, 0, 0.15);
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    
+    textarea {
+      background: #F6FBF9;
+      border: none;
+      border-bottom: dashed rgba(0, 0, 0, 0.15);
+      padding-bottom: 5px;
+      width: 100%;
+    }
 
-    button {
+    .icones-editar {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+
+     .submit {
+      align-self: center;
+      max-width: 100px;
+      width: 100%;
+      background: #24AC39;
       padding: 8px 12px;
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
       cursor: pointer;
-      margin-right: 5px;
     }
 
-    .accept {
-      background: #16a34a;
-      color: white;
-    }
-
-    .reject {
-      background: #dc2626;
-      color: white;
-    }
   </style>
 </head>
 
@@ -184,40 +215,62 @@
   <div class="container">
     <h2>Editar Perfil</h2>
 
+    <h3>{{ user.full_name }}</h3>
+
    <form method="POST" action="/profile/update">
 
-      <input
-        type="text"
-        name="full_name"
-        value="{{ user.full_name }}"
-        placeholder="Nome"
-      >
+    <div class="inputs-container">
+      <img class="icones-editar" src="/images/email.svg" alt="" srcset="">
+      <div class="div-input">
+        <p>E-mail</p>
+        <input
+          type="email"
+          name="email"
+          value="{{ user.email }}"
+          placeholder="E-mail"
+        >
+      </div>
+    </div>
+    <div class="inputs-container">
+      <img class="icones-editar" src="/images/edit.svg" alt="" srcset="">
 
-      <input
-        type="email"
-        name="email"
-        value="{{ user.email }}"
-        placeholder="E-mail"
-      >
+      <div class="div-input">
+        @if(user.type === 'FAMILY')
+        <p>Familiares</p>
+        <input
+          type="number"
+          name="family_members"
+          value="{{ user.family_members || '0'}}"
+          placeholder="Familiares"
+        >
+        @endif
+        @if(user.type === 'CAREGIVER')
+          <p>Descrição</p>
+          <textarea
+            name="description"
+            placeholder="Descrição"
+          >{{ profile.description }}</textarea>
 
-      <input
-        type="text"
-        name="phone"
-        value="{{ user.phone }}"
-        placeholder="Telefone"
-      >
+        @endif
+      </div>
+    </div>
 
-      @if(user.type === 'CAREGIVER')
+    <div class="inputs-container">
+      <img class="icones-editar" src="/images/phone.svg" alt="" srcset="">
+      <div class="div-input">
+        <p>Telefone</p>
+        <input
+          type="text"
+          name="phone"
+          value="{{ user.phone || '00000000000'}}"
+          placeholder="Telefone"
+        >
+      </div>
+    </div>
 
-        <textarea
-          name="description"
-          placeholder="Descrição"
-        >{{ profile.description }}</textarea>
 
-      @endif
-
-      <button type="submit">
-        Salvar alterações
+      <button type="submit" class="submit">
+        Salvar
       </button>
 
     </form>

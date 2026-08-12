@@ -29,44 +29,48 @@ export default class ProfileController {
     public async update({ auth, request, response }: HttpContext) {
         const user = auth.user!
 
-        const { full_name, email, phone } = request.only([
-            'full_name',
-            'email',
-            'phone',
-        ])
-
-        user.full_name = full_name
-        user.email = email
-        // user.phone = phone
-
-        await user.save()
 
         if (user.type === 'CAREGIVER') {
+            const { email, phone, description  } = request.only([
+                'email',
+                'phone',
+                'description'
+            ])
+
+            user.email = email
+            user.phone = phone
+            
+            
+            await user.save()
+            
             const caregiver = await Caregiver.query()
             .where('user_id', user.id)
             .firstOrFail()
 
-            const { description } = request.only([
-            'description',
-            ])
-
             caregiver.description = description
+                   
 
             await caregiver.save()
         }
 
         if (user.type === 'FAMILY') {
-            const family = await User.query()
-            .where('user_id', user.id)
-            .firstOrFail()
 
-            // Campos específicos de FAMILY
-            // const { ... } = request.only([...])
+            const { email, phone, family_members  } = request.only([
+                'email',
+                'phone',
+                'family_members'
+            ])
 
-            await family.save()
+            
+            user.email = email
+            user.phone = phone
+            user.family_members = family_members
+            console.log(family_members);
+
+            await user.save()
         }
 
-        return response.redirect('/profile')
+        return response.redirect('/profile/edit')
     }
 }
 

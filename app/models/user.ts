@@ -27,6 +27,12 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column({ serializeAs: null })
   declare type: string
 
+  @column({ serializeAs: null })
+  declare family_members: number
+
+  @column({ serializeAs: null })
+  declare phone: number
+
   @hasOne(() => Caregiver)
   declare caregiver: HasOne<typeof Caregiver>
 
