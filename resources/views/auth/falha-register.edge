@@ -1,72 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="UTF-8">
   <title>Cadastro - ConnectSafe</title>
   <style>
     body {
       font-family: Arial;
-      background: #f4f6f9;
+      background: #A7D7C5;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
     }
-
-    .card {
-      background: white;
-      padding: 30px;
-      width: 350px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .logo {
+      margin-top:-5rem;
+      padding: 2rem;
     }
-
+    .card {
+      background: #F6FBF9;
+      padding: 30px;
+      width: 380px;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .card form {
       display: flex;
       flex-direction: column;
-      max-width: 350px;
+      max-width: 380px;
+      width:100%;
     }
-
     input, select {
-      max-width: 350px;
-      padding: 10px;
+      max-width: 380px;
+      padding: 15px;
       margin-bottom: 15px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
     }
-
     button {
       width: 100%;
       padding: 10px;
-      background: #16a34a;
+      background: #64BE9C;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
       cursor: pointer;
     }
-
-    button:hover {
-      background: #15803d;
+   button:hover {
+      background: #7abfa4;
     }
-
     .login-section {
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
+	@@ -56,18 +73,24 @@
     }
-
     .login-section a {
+      align-self: center;
       text-decoration: none;
-      color: #1d4ed8;
+      color: #212B27;
       font-weight: bold;
     }
-
     .login-section a:hover{
-      color:rgb(95, 125, 207);
+      color: #4f5250;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
+  <div class="logo">
+    <img src="../images/connectsafe.svg" alt="Connectsafe" srcset="">
+  </div>
 
   <div class="card">
     <h2>Cadastrar</h2>
@@ -75,12 +83,10 @@
       <input type="text" name="full_name" placeholder="Nome" required>
       <input type="email" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Senha" required>
-
       <select name="type" required>
         <option value="FAMILY">Família</option>
         <option value="CAREGIVER">Cuidador</option>
       </select>
-
       <button type="submit">Criar Conta</button>
     </form>
     <div class="login-section">
@@ -89,6 +95,4 @@
       <p style="color: red" class="erro-register">E-mail já cadastrado!</p>
     </div>
   </div>
-
 </body>
-</html>
