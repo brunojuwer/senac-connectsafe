@@ -7,13 +7,13 @@
   <style>
     body {
       font-family: Arial;
-      background: #f4f6f9;
+      background: #A7D7C5;
       margin: 0;
       padding: 0;
     }
 
     .navbar {
-      background: #1e293b;
+      background: #64BE9C;
       padding: 15px;
       color: white;
       display: flex;
@@ -21,9 +21,94 @@
     }
 
     .navbar a {
-      color: white;
+      font-size: 2rem;
+      color: black;
       text-decoration: none;
       margin-right: 15px;
+    }
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.user-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.user-dropdown {
+  display: none;
+
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+
+  width: 180px;
+
+  background: white;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  padding: 8px;
+
+  z-index: 1000;
+}
+
+.user-dropdown.active {
+  display: block;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  display: block;
+
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  color: #333;
+  text-align: left;
+  text-decoration: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#editar-perfil {
+    max-width: 151px;
+    border: none;
+    background: transparent;
+    color: #333;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13.33px;
+}
+
+#editar-perfil:hover {
+  background: #f3f4f6;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: #f3f4f6;
+}
+
+    #cuidadores {
+      text-decoration: underline;
     }
 
     .container {
@@ -33,19 +118,15 @@
     }
 
     .card {
-      background: white;
+      background: #F6FBF9;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 15px;
       margin-bottom: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    h2 {
-      margin-top: 0;
-    }
-
     button {
-      background: #2563eb;
+      background: #19A16E;
       color: white;
       border: none;
       padding: 8px 14px;
@@ -54,7 +135,7 @@
     }
 
     button:hover {
-      background: #1d4ed8;
+      background: #48e3aa;
     }
   </style>
 </head>
@@ -62,17 +143,27 @@
 <body>
 
   <div class="navbar">
+    <div class="logo">
+      <img src="/images/connectsafe.svg" alt="Connectsafe" srcset="">
+    </div>
     <div>
-      {{--  <a href="/dashboard">Dashboard</a>  --}}
-      <a href="/caregivers">Cuidadores</a>
+      <a id="cuidadores" href="/caregivers">Cuidadores</a>
       <a href="/requests">Solicitações</a>
     </div>
 
-    <div>
+    <div class="user-menu">
+    <div class="user-button">
       {{ auth.user.email }}
-      <form method="POST" action="/logout" style="display:inline;">
+      <img src="/images/user.svg" alt="Usuário">
+    </div>
+
+    <div class="user-dropdown">
+      <a id="editar-perfil" href="/profile/edit">Editar</a>
+
+      <form method="POST" action="/logout">
         <button type="submit">Sair</button>
       </form>
+      </div>
     </div>
   </div>
 
@@ -82,10 +173,9 @@
     @each(caregiver in caregivers)
 
       <div class="card">
-        <h3>{{ caregiver.description }}</h3>
+        <p><strong>Descrição:</strong> {{ caregiver.description }}</p>
         <p><strong>Nome:</strong> {{ caregiver.user.full_name }}</p>
-        <p><strong>Local:</strong> {{ caregiver.location }}</p>
-        <p><strong>Rating:</strong> {{ caregiver.rating }}</p>
+        <p><strong>Nota:</strong> {{ caregiver.rating }}</p>
 
         <form method="POST" action="/requests">
           <input type="hidden" name="caregiver_id" value="{{ caregiver.id }}">
@@ -103,5 +193,19 @@
 
   </div>
 
+<script>
+  const userButton = document.querySelector('.user-button');
+  const userDropdown = document.querySelector('.user-dropdown');
+
+  userButton.addEventListener('click', () => {
+    userDropdown.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.user-menu')) {
+      userDropdown.classList.remove('active');
+    }
+  });
+</script>
 </body>
 </html>
