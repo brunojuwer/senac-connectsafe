@@ -39,16 +39,16 @@ export default class ProfileController {
 
             user.email = email
             user.phone = phone
-            
-            
+
+
             await user.save()
-            
+
             const caregiver = await Caregiver.query()
             .where('user_id', user.id)
             .firstOrFail()
 
             caregiver.description = description
-                   
+
 
             await caregiver.save()
         }
@@ -61,7 +61,7 @@ export default class ProfileController {
                 'family_members'
             ])
 
-            
+
             user.email = email
             user.phone = phone
             user.family_members = family_members
@@ -73,4 +73,3 @@ export default class ProfileController {
         return response.redirect('/profile/edit')
     }
 }
-

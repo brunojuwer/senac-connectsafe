@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+
   <meta charset="UTF-8">
   <title>Cadastro - ConnectSafe</title>
   <style>
@@ -14,12 +14,10 @@
       flex-direction: column;
       height: 100vh;
     }
-
     .logo {
       margin-top:-5rem;
       padding: 2rem;
     }
-
     .card {
       background: #F6FBF9;
       padding: 30px;
@@ -30,15 +28,12 @@
       flex-direction: column;
       align-items: center;
     }
-
     .card form {
       display: flex;
       flex-direction: column;
       max-width: 380px;
       width:100%;
     }
-
-
     input, select {
       max-width: 380px;
       padding: 15px;
@@ -46,7 +41,6 @@
       border-radius: 10px;
       border: 2px solid #ccc;
     }
-
     button {
       width: 100%;
       padding: 10px;
@@ -58,27 +52,18 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
-
    button:hover {
       background: #7abfa4;
     }
-
     .login-section {
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
+	@@ -56,18 +73,24 @@
     }
-
     .login-section a {
       align-self: center;
       text-decoration: none;
       color: #212B27;
       font-weight: bold;
     }
-
     .login-section a:hover{
       color: #4f5250;
       text-decoration: underline;
@@ -98,12 +83,10 @@
       <input type="text" name="full_name" placeholder="Nome" required>
       <input type="email" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Senha" required>
-
       <select name="type" required>
         <option value="FAMILY">Família</option>
         <option value="CAREGIVER">Cuidador</option>
       </select>
-
       <button type="submit">Criar Conta</button>
     </form>
     <div class="login-section">
@@ -112,6 +95,4 @@
       <p style="color: red" class="erro-register">E-mail já cadastrado!</p>
     </div>
   </div>
-
 </body>
-</html>
