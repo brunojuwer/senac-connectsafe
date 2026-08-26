@@ -98,4 +98,59 @@ node ace migration:run
 npm run dev
 ````
 
+<br />
+
+TELAS DO PROJETO
+
+- Tela de login
+  
+<img width="1592" height="1062" alt="Screenshot 2026-08-25 205235" src="https://github.com/user-attachments/assets/073233c4-9eeb-41cf-8284-646da1e5c397" />
+
+-------
+
+- Tela de login falha
+
+<img width="1363" height="961" alt="Screenshot 2026-08-25 205254" src="https://github.com/user-attachments/assets/222fc24a-b450-421b-b73c-3977f51b02cc" />
+
+-------
+
+- Tela de registro
+
+<img width="1422" height="979" alt="Screenshot 2026-08-25 205314" src="https://github.com/user-attachments/assets/ca84851d-db9e-4c98-8b4b-37f6b4c24511" />
+
+-------
+
+- Tela de registro falha
+  
+<img width="1308" height="1031" alt="Screenshot 2026-08-25 205328" src="https://github.com/user-attachments/assets/66e2d6c8-9a36-4ceb-a3b6-395c1ba57e71" />
+
+-------
+
+- Tela principal do familiar
+  
+<img width="2528" height="1214" alt="Screenshot 2026-08-25 205349" src="https://github.com/user-attachments/assets/4f360450-5c32-4fbb-a98e-2db79e38f55a" />
+
+-------
+
+- Tela de solicitações do familiar
+
+<img width="2541" height="1233" alt="Screenshot 2026-08-25 205402" src="https://github.com/user-attachments/assets/e2df3ffe-5fe9-424a-a914-582c128c0e16" />
+
+-------
+
+- Tela edição do familiar
+
+<img width="2553" height="1219" alt="Screenshot 2026-08-25 205420" src="https://github.com/user-attachments/assets/88b10ae9-65d5-43fc-a659-8c0085d48ce7" />
+
+-------
+
+- Tela principal do cuidador
+  
+<img width="2548" height="1157" alt="Screenshot 2026-08-25 205537" src="https://github.com/user-attachments/assets/62a036c9-449c-4227-b27c-d1107ea94461" />
+
+-------
+
+- Tela edição do cuidador
+  
+<img width="2538" height="1114" alt="Screenshot 2026-08-25 210253" src="https://github.com/user-attachments/assets/b250021d-0300-4efc-8a81-9353ce26104e" />
 
