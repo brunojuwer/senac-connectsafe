@@ -30,6 +30,7 @@ Sistema web para conexão entre Famílias e Cuidadores, desenvolvido com AdonisJ
 
 ### :rocket: Tecnologias utilizadas
 
+- Typescript
 - Node.js
 - AdonisJS
 - Lucid ORM
