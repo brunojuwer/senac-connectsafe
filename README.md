@@ -101,6 +101,15 @@ npm run dev
 
 <br />
 
+-------
+
+Schema do banco de dados
+
+<img width="759" height="449" alt="image" src="https://github.com/user-attachments/assets/e672bfd4-efa0-445c-bdde-776f2f2c573a" />
+
+-------
+
+
 TELAS DO PROJETO
 
 - Tela de login
