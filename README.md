@@ -19,6 +19,7 @@
 - Usuário membro da família deve conseguir ver o status das solicitações que fez.
 - Usuário cuidador deve conseguir listar, aceitar e recusar uma solicitação.
 - Usuários devem conseguir fazer logoff da aplicação.
+- Usuários devem conseguir editar as informações pessoais.
 
 
 ## ConnectSafe
